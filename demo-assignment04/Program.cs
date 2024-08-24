@@ -143,7 +143,59 @@
             
             Arr02[0] = 100;
             Console.WriteLine($"Arr01[0] = {Arr01[0]}"); 
-            Console.WriteLine($"Arr02[0] = {Arr02[0]}"); 
+            Console.WriteLine($"Arr02[0] = {Arr02[0]}");
+            #endregion
+
+            #region array of refrence type
+            string[] Names01 = { "omar" };
+            string[] Names02 = new string [1];
+            Console.WriteLine($"HC Of Names01 = {Names01.GetHashCode()}"); // 54267293
+            Console.WriteLine($"HC Of Names02 = {Names02.GetHashCode()}"); // 18643596
+            #region Shallow Copy
+
+            // Names02 = Names01; // Shallow Copy [References --- Stack]
+            // References [Name01, Name02] => Same object
+
+            // Console.WriteLine("After Shallow Copy ");
+
+            // Console.WriteLine($"HC Of Names01 = {Names01.GetHashCode()}"); // 54267293
+            // Console.WriteLine($"HC Of Names02 = {Names02.GetHashCode()}"); // 54267293
+
+            // Console.WriteLine($"Name01[0] = {Names01[0]}"); // Omar
+            // Console.WriteLine($"Name02[0] = {Names02[0]}"); // Omar
+
+            // Names02[0] = "Aya";
+
+            // Console.WriteLine($"Name01[0] = {Names01[0]}"); // Aya
+            // Console.WriteLine($"Name02[0] = {Names02[0]}"); // Aya
+
+            #endregion
+
+            #region Deep Copy
+
+            #region Deep Copy
+
+            Names01 = new string[] { "Omar", "Clone" };
+
+            // Create DEEP COPY With New And Different Identity
+            // Object Will Have Same Object State [Data] Of Caller Names01
+            Names02 = (string[])Names01.Clone();
+
+            Console.WriteLine("After Deep Copy:");
+            Console.WriteLine($"HC OF Names01 = {Names01.GetHashCode()}"); // 54267293
+            Console.WriteLine($"HC OF Names02 = {Names02.GetHashCode()}"); // 33574638
+
+            Console.WriteLine($"Name01[0] = {Names01[0]}"); // Omar
+            Console.WriteLine($"Name02[0] = {Names02[0]}"); // Omar
+
+            Names02[0] = "Aya";
+
+            Console.WriteLine($"Name01[0] = {Names01[0]}"); // Omar
+            Console.WriteLine($"Name02[0] = {Names02[0]}"); // Aya
+
+            #endregion
+
+            #endregion
             #endregion
 
             #endregion
